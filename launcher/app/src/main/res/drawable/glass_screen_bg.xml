@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Full-screen "classic glass" surface for the launcher's own settings pages: a quiet top-lit dark gradient,
+     no hue, so frosted-white rows read cleanly over it on a 720p panel. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient android:angle="270"
+                android:startColor="#F21B2336"
+                android:centerColor="#F20E1320"
+                android:endColor="#F2070A12" />
+        </shape>
+    </item>
+</layer-list>
