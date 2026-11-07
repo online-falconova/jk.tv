@@ -508,7 +508,10 @@ public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             h.label.setText(e.label);
             h.label.setVisibility(uniformTiles ? View.GONE : View.VISIBLE);
         }
-        h.card.setOnClickListener(v -> launch(e));
+        h.card.setOnClickListener(v -> {
+            v.playSoundEffect(android.view.SoundEffectConstants.CLICK);
+            launch(e);
+        });
         h.card.setOnLongClickListener(v -> {
             if (tileMenu) {
                 int pos = h.getBindingAdapterPosition();
@@ -554,7 +557,9 @@ public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         try {
             ctx.startActivity(i);
             if (cinematic) LastOpened.record(ctx, e.pkg);
-            if (advancedEffects && !reducedMotion && ctx instanceof Activity) {
+            // The zoom-into-app motion runs whenever motion is on (only reduced_motion TVs skip it), not just
+            // with advanced effects, so opening any app dives into it and Home recedes behind.
+            if (!reducedMotion && ctx instanceof Activity) {
                 ((Activity) ctx).overridePendingTransition(R.anim.app_open_enter, R.anim.app_open_exit);
             }
         } catch (Exception ex) {

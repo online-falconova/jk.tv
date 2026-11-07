@@ -28,3 +28,4 @@ launcher/replay_pid*.log
 /custom-glass-theme/
 /YoutubeApk/
 .vscode/
+/.github/workflows/
